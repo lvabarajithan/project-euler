@@ -28,6 +28,49 @@ public class Problem11 {
             {01, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 01, 89, 19, 67, 48},
         };
 
+        printMax(grid, 4);
+
+    }
+
+    private static void printMax(int[][] grid, int k) {
+        long max = 0;
+        int n = grid.length;
+
+        for (int y=0; y<n; y++) {
+            for (int x=0; x<n; x++) {
+
+                if (x+3 < n) {
+                    long prod = grid[x][y] * grid[x+1][y] * grid[x+2][y] * grid[x+3][y];
+                    if (prod > max) {
+                        max = prod;
+                    }
+                }
+
+                if (y+3 < n) {
+                    long prod = grid[x][y] * grid[x][y+1] * grid[x][y+2] * grid[x][y+3];
+                    if (prod > max) {
+                        max = prod;
+                    }
+                }
+
+                if (x+3 < n && y+3 < n) {
+                    long prod = grid[x][y] * grid[x+1][y+1] * grid[x+2][y+2] * grid[x+3][y+3];
+                    if (prod > max) {
+                        max = prod;
+                    }
+                }
+
+                if (x+3 < n && y >= 3) {
+                    long prod = grid[x][y] * grid[x+1][y-1] * grid[x+2][y-2] * grid[x+3][y-3];
+                    if (prod > max) {
+                        max = prod;
+                    }
+                }
+                
+            }
+        }
+
+        System.out.println("Max: " + max);
     }
     
 }
